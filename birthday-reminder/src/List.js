@@ -1,31 +1,20 @@
-import React, { useState } from "react"
-import data from "./data/data"
+import React from "react"
 
-function List() {
-  const [people, setPeople] = useState(data)
-
-  const clearAll = () => {
-    setPeople([])
-  }
-
+const List = ({ people }) => {
   return (
-    <div className="birthday-list">
-      <h4>{people.length} birthdays today</h4>
-      {people.map((person) => {
+    <>
+      {people.map(({ id, name, age, image }) => {
         return (
-          <div className="person" key={person.id}>
-            <img className="person__image" src={person.image} alt="" />
-            <div className="person__info">
-              <h4 className="person__name">{person.name}</h4>
-              <h4 className="person__age">{person.age} years</h4>
+          <article className="person" key={id}>
+            <img src={image} alt="" />
+            <div>
+              <h4>{name}</h4>
+              <p>{age} years</p>
             </div>
-          </div>
+          </article>
         )
       })}
-      <button className="btn" onClick={clearAll}>
-        Clear All
-      </button>
-    </div>
+    </>
   )
 }
 
